@@ -1,0 +1,15 @@
+{
+  "project": "31-prism",
+  "name": "Prism",
+  "network": "testnetBradbury",
+  "chainId": 4221,
+  "rpc": "https://rpc-bradbury.genlayer.com",
+  "explorer": "https://explorer-bradbury.genlayer.com",
+  "contractAddress": "0xA92543730C5eF6139B02646eCD5F88CDe1f74950",
+  "deployTxHash": "0x17e21b13b8a828b28e7ff7e131e487ef2b06e0cdc1655a6ba4c52ffb8aead263",
+  "contractExplorer": "https://explorer-bradbury.genlayer.com/address/0xA92543730C5eF6139B02646eCD5F88CDe1f74950",
+  "deployer": "0xdAa923b817C6116f2463957542FB29F6Ba671FE8",
+  "deployedAt": "2026-07-01T15:49:39.351Z",
+  "statusName": 5,
+  "smoke": {}
+}
