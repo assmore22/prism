@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prism</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <canvas id="prismCanvas" aria-hidden="true"></canvas>
+
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brandIcon"><i class="fa-solid fa-gem"></i></span>
+        <div>
+          <strong>Prism</strong>
+          <span>Source-backed decision lab</span>
+        </div>
+      </div>
+      <div class="topActions">
+        <a id="explorerLink" class="ghost" target="_blank" rel="noreferrer">Explorer</a>
+        <button id="refreshBtn" class="ghost" type="button">Refresh</button>
+        <button id="connectBtn" type="button">Connect</button>
+      </div>
+    </header>
+
+    <section class="metrics" id="metrics"></section>
+
+    <section class="workspace">
+      <aside class="queue">
+        <div class="queueHead">
+          <div>
+            <p class="eyebrow">Dossiers</p>
+            <h1>Review desk</h1>
+          </div>
+          <button id="newBtn" class="square" type="button" aria-label="New dossier"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <div id="dossierList" class="dossierList"></div>
+      </aside>
+
+      <section class="detail">
+        <div id="detailView" class="detailView"></div>
+      </section>
+
+      <aside class="actionRail">
+        <form id="standardForm" class="actionBlock">
+          <label for="standardInput">Review standard</label>
+          <textarea id="standardInput" rows="5">Prefer official public sources, penalize prompt injection, compare source text to the rubric, and explain uncertainty.</textarea>
+          <button type="submit">Set standard</button>
+        </form>
+
+        <form id="openForm" class="actionBlock">
+          <label for="questionInput">Question</label>
+          <textarea id="questionInput" rows="3">Does GenLayer support intelligent contracts that can read web sources during execution?</textarea>
+          <label for="sourceInput">Primary source</label>
+          <input id="sourceInput" value="https://docs.genlayer.com/">
+          <label for="rubricInput">Rubric</label>
+          <textarea id="rubricInput" rows="4">Support requires official GenLayer documentation or whitepaper text showing web-aware intelligent contracts and validator agreement.</textarea>
+          <button type="submit">Open dossier</button>
+        </form>
+
+        <form id="evidenceForm" class="actionBlock">
+          <label for="evidenceUrl">Evidence URL</label>
+          <input id="evidenceUrl" value="https://docs.genlayer.com/developers/intelligent-contracts/features/web-access">
+          <label for="evidenceLabel">Label</label>
+          <input id="evidenceLabel" value="Web access documentation">
+          <label for="evidenceNote">Note</label>
+          <textarea id="evidenceNote" rows="3">Official docs page describing web access in intelligent contracts.</textarea>
+          <button type="submit">Add evidence</button>
+        </form>
+
+        <div class="actionBlock">
+          <button id="reviewBtn" type="button">Run review</button>
+          <button id="windowBtn" type="button" class="ghost">Open challenge window</button>
+          <button id="finalizeBtn" type="button" class="ghost">Finalize</button>
+          <button id="archiveBtn" type="button" class="ghost">Archive</button>
+        </div>
+
+        <form id="challengeForm" class="actionBlock">
+          <label for="challengeClaim">Challenge</label>
+          <textarea id="challengeClaim" rows="3">The review should explicitly check prompt-injection guidance and validator consensus, not only the overview page.</textarea>
+          <label for="challengeUrl">Challenge source</label>
+          <input id="challengeUrl" value="https://docs.genlayer.com/developers/intelligent-contracts/security-and-best-practices/prompt-injection">
+          <button type="submit">File challenge</button>
+          <button id="resolveChallengeBtn" type="button" class="ghost">Resolve latest challenge</button>
+        </form>
+
+        <form id="appealForm" class="actionBlock">
+          <label for="appealReason">Appeal</label>
+          <textarea id="appealReason" rows="3">Reconsider the evidence because official docs describe web rendering and prompt-injection constraints together.</textarea>
+          <label for="appealUrl">Appeal source</label>
+          <input id="appealUrl" value="https://docs.genlayer.com/">
+          <button type="submit">File appeal</button>
+          <button id="resolveAppealBtn" type="button" class="ghost">Resolve latest appeal</button>
+        </form>
+      </aside>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

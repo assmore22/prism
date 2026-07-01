@@ -1,0 +1,32 @@
+{
+  "project": "31-prism",
+  "name": "Prism",
+  "network": "studionet",
+  "chainId": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "explorer": "https://explorer-studio.genlayer.com",
+  "contractAddress": "0xE76D95DF6D7199fEFdD376B4d592509eD7179D69",
+  "deployTxHash": "0x90b916719daf150988e90f2e6682640698c2058d896989d3a31940c61b69000b",
+  "contractExplorer": "https://explorer-studio.genlayer.com/contracts/0xE76D95DF6D7199fEFdD376B4d592509eD7179D69",
+  "deployer": "0xCa3984bf6db625839EF646bEb2Be1f73c0Fa4a4F",
+  "deployedAt": "2026-06-24T04:40:33.164Z",
+  "statusName": 7,
+  "smoke": {
+    "set_standard": "0xf7ab18a67a14786de087212ec96c2dd17be6a9271613905b5590c2c964c3455c",
+    "open_dossier": "0x1f74e0b949acf467629ed0a9597f5b88ad3ee393a2c51ea1f5a2d2338be25d55",
+    "add_evidence_web": "0xe8b5cbb7ff036489afbda876be59cd79b48d07fa9888bceb7c8db84c4681cf93",
+    "add_evidence_security": "0x69b011ca93490d35e8111027758e942bf0c4d170a94ecdbdd3c38626e43ae896",
+    "add_evidence_whitepaper": "0xebe9da45daeacf8414c5bde124c282026a30420abdd2e907c8d5cfbc6cbf2824",
+    "review": "0xaf36d3730227a9a01430dabf001f4e17a07fa1baa3b24f31c4d371fafb138c1d",
+    "challenge_window": "0x14fc51ffb0c4b7dcf986684ae0d3d8997e323907e6522a15039797aa52f59d0f",
+    "submit_challenge": "0x505c1cb94352751ae2ab41fbe5400c12815b902fbb37c1b517c8411895e5dfe7",
+    "resolve_challenge": "0x354939f6b15d31bd02d24369f6ffbc3f4390b97bb00971ca197fbdd7e79e376f",
+    "submit_appeal": "0x44e8024b008689fd432cc2d8f050de9c45af4bdbdb4f0288c300b9d63d85e44d",
+    "resolve_appeal": "0xa9bf517fbccc5682b6c41db72cc9be9b547dd226b76713c21e1233d8ac949b5d",
+    "finalize": "0x18713cec5ceef9dfb959372f49d094d162f6e88f77153016e5b2dc26c27d1cd0",
+    "reputation": "0xa30d48ea29316242f2595c06cd86c8a1a4dc76e7939b2084ab4f696e8494ddd4",
+    "dossierId": "0",
+    "challengeId": "0",
+    "appealId": "0"
+  }
+}
