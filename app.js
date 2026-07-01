@@ -73,13 +73,19 @@ async function loadDetail(id) {
     return;
   }
   const sid = String(id);
-  const [evidence, reviews, challenges, appeals, audit] = await Promise.all([
-    reader.read("get_evidence", [sid]),
-    reader.read("get_reviews", [sid]),
-    reader.read("get_challenges", [sid]),
-    reader.read("get_appeals", [sid]),
-    reader.read("get_audit_log", [sid]),
-  ]);
+  async function readSection(name) {
+    try {
+      return await reader.read(name, [sid]);
+    } catch (error) {
+      toast(fmtErr(error));
+      return "[]";
+    }
+  }
+  const evidence = await readSection("get_evidence");
+  const reviews = await readSection("get_reviews");
+  const challenges = await readSection("get_challenges");
+  const appeals = await readSection("get_appeals");
+  const audit = await readSection("get_audit_log");
   state.detail = {
     evidence: parse(evidence, []),
     reviews: parse(reviews, []),
@@ -98,7 +104,12 @@ async function load() {
   $("connectBtn").textContent = state.account ? short(state.account) : "Connect";
   $("explorerLink").href = `${CONFIG.explorerBase}/address/${CONTRACT}`;
 
-  const boot = parse(await reader.read("get_frontend_bootstrap"), {});
+  let boot = {};
+  try {
+    boot = parse(await reader.read("get_frontend_bootstrap"), {});
+  } catch (error) {
+    toast(fmtErr(error));
+  }
   state.bootstrap = boot;
   state.dossiers = Array.isArray(boot.recentDossiers) ? boot.recentDossiers : [];
   if (!state.selectedId && state.dossiers[0]) state.selectedId = String(state.dossiers[0].id);

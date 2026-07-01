@@ -7,6 +7,32 @@ export const BRADBURY_HEX = "0x107d"; // 4221
 
 const reader = createClient({ chain: testnetBradbury, account: createAccount() });
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function rpcErrorText(value) {
+  return Array.isArray(value)
+    ? value.map((item) => item?.message || item?.shortMessage || item?.details || String(item)).join(" ")
+    : (value?.message || value?.shortMessage || value?.details || String(value || ""));
+}
+
+function isTransientRpcError(value) {
+  return /rate limit|LimitExceededRpcError|Request exceeds defined limit|429|503|timeout|failed to fetch|network/i.test(rpcErrorText(value));
+}
+
+async function quietTransientRpcConsole(task) {
+  const original = console.error;
+  console.error = (...args) => {
+    const text = rpcErrorText(args);
+    if (/GenLayer RPC error/i.test(text) || isTransientRpcError(text)) return;
+    original(...args);
+  };
+  try {
+    return await task();
+  } finally {
+    console.error = original;
+  }
+}
+
 export async function withRetry(fn, tries = 3) {
   let last;
   for (let i = 0; i < tries; i++) {
@@ -14,8 +40,8 @@ export async function withRetry(fn, tries = 3) {
     catch (e) {
       last = e;
       const msg = (e?.message || e || "").toString();
-      if (!/failed to fetch|network|timeout|429|503/i.test(msg)) throw e;
-      await new Promise((r) => setTimeout(r, 400 * (i + 1)));
+      if (!isTransientRpcError(msg)) throw e;
+      await sleep(550 * (i + 1));
     }
   }
   throw last;
@@ -24,7 +50,7 @@ export async function withRetry(fn, tries = 3) {
 export function makeReader(address) {
   return {
     read: (functionName, args = []) =>
-      withRetry(() => reader.readContract({ address, functionName, args })),
+      withRetry(() => quietTransientRpcConsole(() => reader.readContract({ address, functionName, args }))),
   };
 }
 
