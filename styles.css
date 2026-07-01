@@ -27,6 +27,10 @@ body {
   overflow-x: hidden;
 }
 
+a, a:hover, .sourceLink {
+  text-decoration: none;
+}
+
 button, input, textarea, select {
   font: inherit;
 }
@@ -313,7 +317,6 @@ h1 {
 
 .sourceLink {
   color: var(--ink);
-  text-decoration-thickness: 2px;
   overflow-wrap: anywhere;
 }
 
